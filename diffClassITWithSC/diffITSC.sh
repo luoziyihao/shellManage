@@ -1,0 +1,54 @@
+#!/bin/sh
+#习惯 自顶向下 依次分析解决每一个问题 由大化小 
+#多看 多查
+
+#IT环境的文件目录 class 或者config 或者根目录
+ITFILEPATH=$1
+ITFILEPATH="/usr/ebank/buildit/app/BPServer/CashManage/classes"
+#生产环境的文件目录 class 或者config 或者根目录
+SCFILEPATH=$2
+#SCFILEPATH=`pwd`
+
+#方案1 将目录信息存入文件，依此读取单行的的数据然后 echo 输出处理
+#方案2 将目录信息存入文件，再存入数组，再循环数组即可 
+#方案3 将流式的记录直接存入数组,再循环处理
+#方案4 将流式的记录直接循环处理
+#效率比较
+
+#Test
+`#find ${ITFILEPATH} -type f > ITFILEPATH.tmp 
+#while read LINE
+#do
+#    echo $LINE
+#done < ITFILEPATH.tmp
+
+#方案4
+
+cmpwork1(){
+   cmpresulttmp=`cmp -s ${i} ${SCFILEPATH}${subpath}`
+   if  test "${?}"
+    then 
+        echo ${subpath}
+   fi 
+}
+
+cmp_cmd(){
+    cmp -s ${i} ${SCFILEPATH}${subpath}
+}
+
+cmpwork2(){
+   #如果命令执行成功 返回为 0  shell以为真 这里刚好是二进制比较相等
+   if ! cmp_cmd
+    then 
+        echo ${subpath}
+   fi 
+}
+
+#开始读取文件处理
+for i in `find ${ITFILEPATH} -type f`
+do
+   #get filepath under dir with /
+   subpath=${i#*${ITFILEPATH}}
+   #cmpwork1
+   cmpwork2
+done

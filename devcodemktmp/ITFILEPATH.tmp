@@ -1,0 +1,9 @@
+D:/raoxiangMM/Doc/ITLib/EbankTask/classes/com/citic/bpserver/bean/corp/PlPoolTrnInfoBean.class
+D:/raoxiangMM/Doc/ITLib/EbankTask/classes/com/citic/bpserver/constant/task/CashConstant.class
+D:/raoxiangMM/Doc/ITLib/EbankTask/classes/com/citic/bpserver/dao/task/corp/impl/PoolMonthDetailDao.class
+D:/raoxiangMM/Doc/ITLib/EbankTask/classes/com/citic/bpserver/task/corp/impl/PoolMonthDetailCmp.class
+D:/raoxiangMM/Doc/ITLib/EbankTask/classes/com/citic/bpserver/task/corp/PoolMonthDetailTask.class
+D:/raoxiangMM/Doc/ITLib/EbankTask/classes/com/citic/common/BpUtil.class
+D:/raoxiangMM/Doc/ITLib/EbankTask/classes/com/citic/common/RecordUtil.class
+D:/raoxiangMM/Doc/ITLib/EbankTask/config/SYSDATA/Task.xml
+D:/raoxiangMM/Doc/ITLib/EbankTask/config/SYSDATA/TASKS/PoolMonthDetailTask.xml

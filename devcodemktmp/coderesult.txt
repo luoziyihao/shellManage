@@ -1,0 +1,84 @@
+	//子公司账号
+	private String borsetaccount;
+
+	//母公司账号
+	private String consetaccount;
+
+	//明细日期
+	private String detaildate;
+
+	//明细月份
+	private String detailmonth;
+
+	//银行号
+	private String bankno;
+
+	//现金池ID
+	private String poolid;
+
+	//现金池名称
+	private String poolname;
+
+	//子公司名称
+	private String borsetaccountnm;
+
+	//母公司名称
+	private String consetaccountnm;
+
+	//上月底余额
+	private String lastmonthbalance;
+
+	//委存金额（给母公司）
+	private String dpamt;
+
+	//委贷金额（从母公司）
+	private String lnamt;
+
+	//委存委贷累计余额
+	private String amtsurplus;
+
+	//余额变动天数
+	private String surpluschangedate;
+
+	//委存利率(%)
+	private String dprate;
+
+	//委贷利率(%)
+	private String lnrate;
+
+	//委存或委贷利息
+	private String interest;
+
+	//累计委存委贷利息
+	private String totalinterest;
+
+	//累计委存利息
+	private String dpinterest;
+
+	//累计委贷利息
+	private String lninterest;
+
+
+	public ---Bean(Context context) {
+		this.borsetaccount = ((XmlField)context.lookup("BORSETACCOUNT")).getValue();
+		this.consetaccount = ((XmlField)context.lookup("CONSETACCOUNT")).getValue();
+		this.detaildate = ((XmlField)context.lookup("DETAILDATE")).getValue();
+		this.detailmonth = ((XmlField)context.lookup("DETAILMONTH")).getValue();
+		this.bankno = ((XmlField)context.lookup("BANKNO")).getValue();
+		this.poolid = ((XmlField)context.lookup("POOLID")).getValue();
+		this.poolname = ((XmlField)context.lookup("POOLNAME")).getValue();
+		this.borsetaccountnm = ((XmlField)context.lookup("BORSETACCOUNTNM")).getValue();
+		this.consetaccountnm = ((XmlField)context.lookup("CONSETACCOUNTNM")).getValue();
+		this.lastmonthbalance = ((XmlField)context.lookup("LASTMONTHBALANCE")).getValue();
+		this.dpamt = ((XmlField)context.lookup("DPAMT")).getValue();
+		this.lnamt = ((XmlField)context.lookup("LNAMT")).getValue();
+		this.amtsurplus = ((XmlField)context.lookup("AMTSURPLUS")).getValue();
+		this.surpluschangedate = ((XmlField)context.lookup("SURPLUSCHANGEDATE")).getValue();
+		this.dprate = ((XmlField)context.lookup("DPRATE")).getValue();
+		this.lnrate = ((XmlField)context.lookup("LNRATE")).getValue();
+		this.interest = ((XmlField)context.lookup("INTEREST")).getValue();
+		this.totalinterest = ((XmlField)context.lookup("TOTALINTEREST")).getValue();
+		this.dpinterest = ((XmlField)context.lookup("DPINTEREST")).getValue();
+		this.lninterest = ((XmlField)context.lookup("LNINTEREST")).getValue();
+	}
+
