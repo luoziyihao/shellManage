@@ -1,0 +1,12 @@
+/cooperateBP/config/SYSDATA/mapper/LNALCMIT.xml
+/cooperateBP/config/SYSDATA/mapper/LOANDETL.xml
+/cooperateBP/config/SYSDATA/mapper/NRCTLGIN.xml
+/cooperateBP/config/SYSDATA/mapper/NRCTURAD.xml
+/cooperateBP/config/SYSDATA/mapper/NRCTURQU.xml
+/cooperateBP/config/SYSDATA/mapper/NRCTURUP.xml
+/cooperateBP/config/SYSDATA/mapper/NRCTUSLT.xml
+/cooperateBP/src/com/citic/cooperate/bp/user/component/AuthorizeComponent.java
+/cooperateBP/src/com/citic/cooperate/bp/credit/component/CreditInfoComponent.java
+/cooperateBP/src/com/citic/cooperate/bp/credit/component/LoanComponent.java
+/cooperateBP/src/com/citic/cooperate/bp/credit/component/LoanQueryComponent.java
+/cooperateBP/src/com/citic/cooperate/bp/user/component/UserManageComponent.java

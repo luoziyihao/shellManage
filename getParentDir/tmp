@@ -1,0 +1,17 @@
+./BP/config/SYSDATA/mapper/LNALCMIT.xml
+./BP/config/SYSDATA/mapper/LOANDETL.xml
+./BP/config/SYSDATA/mapper/NRCTLGIN.xml
+./BP/config/SYSDATA/mapper/NRCTURAD.xml
+./BP/config/SYSDATA/mapper/NRCTURQU.xml
+./BP/config/SYSDATA/mapper/NRCTURUP.xml
+./BP/config/SYSDATA/mapper/NRCTUSLT.xml
+./BP/classes/com/citic/cooperate/bp/user/component/AuthorizeComponent.class
+./BP/classes/com/citic/cooperate/bp/credit/component/CreditInfoComponent.class
+./BP/classes/com/citic/cooperate/bp/credit/component/LoanComponent.class
+./BP/classes/com/citic/cooperate/bp/credit/component/LoanQueryComponent.class
+./BP/classes/com/citic/cooperate/bp/user/component/UserManageComponent.class
+
+
+
+
+./PRE/config/SYSDATA/Update.xml

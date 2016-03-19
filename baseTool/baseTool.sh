@@ -40,6 +40,9 @@ awk '$1 ~ /rm/ ' recover.sh
 
 awk -F" " '$1 ~ /Index:/ {print $2}' diff.txt >difflist.txt
 
+#抽取上线清单
+sed '/^$/d' recover.sh |awk '$1 ~ /rm/ {print$3}'|less
+
 command2****************************************************************************************************
 find
 find ./BP -type f |wc -l
