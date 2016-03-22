@@ -17,16 +17,16 @@ awk -F"_" '{print $0" "$2","}' tmp.txt
 awk '{print "<" $2 " bpField=\"" $3 "\">" $1 "</" $2 ">"} ' tips.txt > request.xml
 awk '{print "reqXml.addField(\"" $3 "\", );" "    //" $1 }' tips.txt >>request.xml
 
-flw配置文件
+"flw配置文件
+"业务代码		BSNCODE	8	String
+"操作员编号		OPRNO	20	String
+"查询月份		QUERYDATE	6	String
+"现金池ID		POOLID	8	String
+"总笔数		TRNSUM	3	Int
+"客户ID		CSTNO	20	String
+"对公网银客户号		CUSTNO	20	String
+"业务流程编号		FLOWID	20	String
  awk -F" " '{print "\t<" $2  " type=\"" $4"\" isNull=\"false\" length=\"" $3 "\" nameCN=\"" $1 "\"/>"} end{print "\n"}'  tips.txt >coderesult.xml
-业务代码		BSNCODE	8	String
-操作员编号		OPRNO	20	String
-查询月份		QUERYDATE	6	String
-现金池ID		POOLID	8	String
-总笔数		TRNSUM	3	Int
-客户ID		CSTNO	20	String
-对公网银客户号		CUSTNO	20	String
-业务流程编号		FLOWID	20	String
 
 "从git比较记录里面抽取文件名
 awk '$1 ~ /diff/  {print $3}' <change.txt > aschange.txt

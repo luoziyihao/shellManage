@@ -1,0 +1,26 @@
+#! /bin/sh
+mkdir -p ./newsh
+recoverinit="echo \"recover package start ... ...\"\n\ncp -rf  ./bak/*  /usr/ebank/buildit/app/BPServer/CashManage/"
+recoverend="echo \"recover package end.\""
+basepath=$(cd `dirname $0`; pwd)
+basepath=$basepath/transhlib
+
+for x
+do 
+    #实际上有$就会转换\n
+    echo -e $recoverinit > trtmp
+    echo "" >> trtmp
+    sed -f  $basepath/rmspace.sed $x |awk -f $basepath/tranrecover.awk >> trtmp
+    #sed -f  $basepath/rmspace.sed $x |awk '$1 ~ /rm/ {print $0}' >> trtmp
+    echo "" >> trtmp
+    echo $recoverend >> trtmp
+
+    #获取 x 文件名
+    #用shell的替换语法是有风险的 必须要求是一开始就匹配到/ 如果是./这种目录其实是匹配不到的 还是用
+    #其实用##*/就可以啦
+    #        xpath=`awk -F "/" '{print $NF}' $xpath`
+    cat trtmp > ./newsh/${x##*/}
+done
+rm trtmp
+
+
