@@ -19,7 +19,10 @@ if [ ! -d "$backupPath" ]; then
 fi
 echo "tomcat home: $tomcatPath"
 echo "backup path: $backupPath"
-echo 'try to stop tomcat...'
+echo 'try to stop nginx ...'
+service nginx stop
+sleep 3
+echo 'try to stop  tomcat...'
 service tomcat stop
 
 echo 'stop tomcat finished...'
@@ -36,6 +39,6 @@ echo -e "\033[32m"
 echo 'startup tomcat...'
 
 service tomcat start
-
-service tomcat status
-# tail -10f $tomcatPath/logs/catalina.out
+sleep 8
+echo 'startup nginx...'
+service nginx start
