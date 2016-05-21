@@ -1,7 +1,15 @@
 #!/bin/sh
 # deploy ctrade for test
 
-SH="/bin/sh"
+GREP=/bin/grep
+PS=/bin/ps
+RM=/bin/rm
+KILL=/bin/kill
+AWK=/bin/awk
+ECHO=/bin/echo
+SH=/bin/sh
+TOMCAT_PROCESS="org.apache.catalina.startup.Bootstrap"
+
 TOMCAT="/opt/apache-tomcat-8.0.30/"
 BIN=${TOMCAT}"/bin"
 WEB_APPS=${TOMCAT}"/webapps"
@@ -15,6 +23,32 @@ FILE_LOCK=${CTRADE_FILE_LOCK}
 
 CTRADEWAR_NAME="ctrade"
 WAR_NAME=${CTRADEWAR_NAME}
+
+# 根据进程名杀掉所有对应进程
+kill_process(){
+    process_name=${1}
+    if [ "${process_name}"x = ""x ]
+    then
+        echo "process name in null space"
+        return 1
+    fi
+
+    while true
+    do
+        # find server PID
+        PID=`${PS} -ef | ${GREP} -E ${process_name}|${GREP} -v "grep"|head -n 1|awk '{print $2}'`
+        if [ "$PID" != "" ];
+        then
+            echo "kill process "${process_name}" on pid "${PID}
+            ${KILL} -s 9 ${PID}
+            sleep 2
+        else
+            echo "kill "${process_name}" over"
+            break
+        fi
+    done
+    return 0
+}
 
 deploy_lock(){
     # create lock dir
@@ -61,9 +95,16 @@ echo "package start..."
 mvn_build
 echo "start..."
 cp ${DEPLOY_PROJECT_WAR} ${WEB_APPS}"/"${WAR_NAME}".war"
-${SH} ${BIN}"/shutdown.sh"
+echo "kill tomcat --------------------------------------------------"
+# ${SH} ${BIN}"/shutdown.sh"
+# kill serveral tomcat process
+kill_process ${TOMCAT_PROCESS}
+echo "kill tomcat end --------------------------------------------------"
 sleep 3
 ${SH} ${BIN}"/startup.sh"
 sleep 3
+
+
+
 deploy_unlock
 echo "done..."
