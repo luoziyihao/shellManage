@@ -3,10 +3,34 @@
 
 import paramiko
 import sys
+import commands
 LIB_NUMBER = 10
+BACKPATH = "/data/webapps/backup"
+LIVE_CMS_WARNAME = "live-cms"
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+
+def get_deploy_locallist(number, warname):
+    print "start get deploy_list from local path" + str(path)
+    # backupPath=${backupPath}"/"${warName}  # in deploy script , it's the backuppath
+    (status, output) = commands.getstatusoutput("cd " + str(BACKPATH) + "/" + str(warname) + " && ls -t |sed  -e '/.war$/!d'|head -n " + str(number))
+    if status == 0:
+        return output
+    return None
+
+def get_deploy_locallist_livecms()
+    return get_deploy_locallist(LIB_NUMBER, LIVE_CMS_WARNAME):)
+
+def recover_lib_local(index, warname, web_list):
+    index = int(index)
+    print "'%s' 开始回滚系统到:%s号包,包名是:%s" % (warname, index, web_list[index-1])
+    cmd = "sh /data/deploy/bin/rollback2.sh " +str(BACKPATH) + "/" + str(warname) + "/" + web_list[index-1] + " " + warname
+    (status, output) = commands.getstatusoutput(cmd)
+    print output
+    if status == 0: 
+        print "'%s' recover OK\n" %(warname)
 
 def get_deploy_list(web_id,number):
     print "start get deploy_list from web" + str(web_id)
