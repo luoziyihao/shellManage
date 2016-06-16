@@ -26,7 +26,7 @@ def get_deploy_locallist_livecms()
 def recover_lib_local(index, warname, web_list):
     index = int(index)
     print "'%s' 开始回滚系统到:%s号包,包名是:%s" % (warname, index, web_list[index-1])
-    cmd = "sh /data/deploy/bin/rollback2.sh " +str(BACKPATH) + "/" + str(warname) + "/" + web_list[index-1] + " " + warname
+    cmd = "sh /data/deploy/bin/rollback_multi.sh " +str(BACKPATH) + "/" + str(warname) + "/" + web_list[index-1] + " " + warname
     (status, output) = commands.getstatusoutput(cmd)
     print output
     if status == 0: 
