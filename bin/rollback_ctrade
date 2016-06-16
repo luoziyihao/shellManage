@@ -12,7 +12,7 @@ class RollBack(cmd.Cmd):
         self.web2_list = get_simple_deploy_list(2)
         self.tst_list = get_deploy_tst_list()
         self.prompt="(RollBack)>"
-        self.intro = '''RollBack0.1使用说明:
+        self.intro = '''RollBack使用说明:
      EOF                        # 退出系统,也可以使用 Crtl+D(Unix)|Ctrl+Z(Dos/Windows)
      walk                       # 扫描备份目录,获取系统备份清单,系统在启动时会默认扫描一次"
      view                       # 查看系统备份清单

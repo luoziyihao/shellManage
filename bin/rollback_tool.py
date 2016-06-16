@@ -7,21 +7,25 @@ import commands
 LIB_NUMBER = 10
 BACKPATH = "/data/webapps/backup"
 LIVE_CMS_WARNAME = "live-cms"
+CTRADE_CMS_WARNAME = "ctrade-cms"
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
 def get_deploy_locallist(number, warname):
-    print "start get deploy_list from local path" + str(path)
+    print "start get deploy_list from local path " + str(BACKPATH) + "/" + str(warname)
     # backupPath=${backupPath}"/"${warName}  # in deploy script , it's the backuppath
     (status, output) = commands.getstatusoutput("cd " + str(BACKPATH) + "/" + str(warname) + " && ls -t |sed  -e '/.war$/!d'|head -n " + str(number))
     if status == 0:
-        return output
+        return str(output).split("\n")
     return None
 
-def get_deploy_locallist_livecms()
-    return get_deploy_locallist(LIB_NUMBER, LIVE_CMS_WARNAME):)
+def get_deploy_locallist_livecms():
+    return get_deploy_locallist(LIB_NUMBER, LIVE_CMS_WARNAME)
+
+def get_deploy_locallist_ctradecms():
+    return get_deploy_locallist(LIB_NUMBER, "ctrade-cms")
 
 def recover_lib_local(index, warname, web_list):
     index = int(index)
@@ -31,6 +35,12 @@ def recover_lib_local(index, warname, web_list):
     print output
     if status == 0: 
         print "'%s' recover OK\n" %(warname)
+
+def recover_lib_live_cms(index, web_list):
+    recover_lib_local(index, LIVE_CMS_WARNAME, web_list)
+
+def recover_lib_ctrade_cms(index, web_list):
+    recover_lib_local(index, CTRADE_CMS_WARNAME, web_list)
 
 def get_deploy_list(web_id,number):
     print "start get deploy_list from web" + str(web_id)

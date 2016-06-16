@@ -1,0 +1,61 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import sys, cmd,threading
+from rollback_tool import *
+
+class RollBack(cmd.Cmd):
+    def __init__(self):
+        cmd.Cmd.__init__(self) # initialize the base class
+
+        self.deploy_locallist_livecms = get_deploy_locallist_livecms()
+        self.prompt="(RollBack)>"
+        self.intro = '''RollBack0.1使用说明:
+     EOF                        # 退出系统,也可以使用 Crtl+D(Unix)|Ctrl+Z(Dos/Windows)
+     walk                       # 扫描备份目录,获取系统备份清单,系统在启动时会默认扫描一次"
+     view                       # 查看系统备份清单
+     roll    回滚包序号         # 回滚live-cms
+    '''
+
+    def help_EOF(self):
+        print "退出程序 Quits the program"
+    def do_EOF(self, line):
+        sys.exit()
+
+    def help_walk(self):
+        print "扫描备份目录,获取系统备份清单"
+    def do_walk(self, line):
+        self.deploy_locallist_livecms = get_deploy_locallist_livecms()
+        if(self.deploy_locallist_livecms is None):
+            print "war lib get error: there is not war"
+            return
+        i = 0;
+        print '%-40s%-40s' % ("index","live-cms")
+        while(i < LIB_NUMBER and i < len(self.deploy_locallist_livecms)):
+            print '%-40s%-40s' % (i+1,self.deploy_locallist_livecms[i])
+            i+=1
+
+    def help_view(self):
+        print "查看系统备份清单"
+    def do_view(self,line):
+        i = 0
+        if(self.deploy_locallist_livecms is None):
+            print "war lib error: there is not war"
+            return
+        print '%-40s%-40s' % ("index","live-cms")
+        while(i < LIB_NUMBER and i < len(self.deploy_locallist_livecms)):
+            print '%-40s%-40s' % (i+1,self.deploy_locallist_livecms[i])
+            i+=1
+
+    def help_roll(self):
+        print "回滚live-cms,到指定包"
+    def do_roll(self, index):
+        if(self.deploy_locallist_livecms is None):
+            print "war lib error: there is not war"
+            return
+        while(index_out_check(index)):
+            index = raw_input("输入回滚包的序号: ")
+        recover_lib_live_cms(index, self.deploy_locallist_livecms)
+
+if __name__ == '__main__':
+    rollBack = RollBack()
+    rollBack.cmdloop()
