@@ -1,0 +1,113 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import sys, cmd,threading
+from rollback_tool import *
+
+class RollBack(cmd.Cmd):
+    def __init__(self):
+        cmd.Cmd.__init__(self) # initialize the base class
+
+        #获取web1和web2的最近的部署包清单
+        self.web1_list = get_simple_deploy_list(1)
+        self.web2_list = get_simple_deploy_list(2)
+        self.tst_list = get_deploy_tst_list()
+        self.prompt="(RollBack)>"
+        self.intro = '''RollBack使用说明:
+     EOF                        # 退出系统,也可以使用 Crtl+D(Unix)|Ctrl+Z(Dos/Windows)
+     walk                       # 扫描备份目录,获取系统备份清单,系统在启动时会默认扫描一次"
+     view                       # 查看系统备份清单
+     viewtst                    # 查看测试服系统备份清单
+     roll1    回滚包序号        # 回滚web1
+     roll2    回滚包序号        # 回滚web2
+     rollA    回滚包序号        # 回滚web1,web2
+     rolltst  回滚包序号        # 回滚测试服
+    '''
+
+    def help_EOF(self):
+        print "退出程序 Quits the program"
+    def do_EOF(self, line):
+        sys.exit()
+
+    def help_walk(self):
+        print "扫描备份目录,获取系统备份清单"
+    def do_walk(self, line):
+        self.web1_list = get_simple_deploy_list(1)
+        self.web2_list = get_simple_deploy_list(2)
+        if(self.web1_list is None or self.web2_list is None):
+            print "war lib error: there is not war"
+            return
+        i = 0;
+        print '%-40s%-40s%-40s' % ("index","web1","web2")
+        while(i < LIB_NUMBER):
+            print '%-40s%-40s%-40s' % (i+1,self.web1_list[i], self.web2_list[i])
+            i+=1
+
+    def help_view(self):
+        print "查看系统备份清单"
+    def do_view(self,line):
+        i = 0
+        if(self.web1_list is None or self.web2_list is None):
+            print "war lib error: there is not war"
+            return
+        print '%-40s%-40s%-40s' % ("index","web1","web2")
+        while(i < LIB_NUMBER and i < len(self.web1_list)):
+            print '%-40s%-40s%-40s' % (i+1,self.web1_list[i], self.web2_list[i])
+            i+=1
+
+    def help_viewtst(self):
+        print "查看系统备份清单"
+    def do_viewtst(self,line):
+        i = 0
+        print '%-40s%-40s%-40s' % ("index","web1","web2")
+        if(self.tst_list is None):
+            print "war lib error: there is not war"
+            return
+        while(i < LIB_NUMBER and i < len(self.tst_list)):
+            print '%-40s%-40s%-40s' % (i+1,self.tst_list[i], self.tst_list[i])
+            i+=1
+
+    def help_roll1(self):
+        print "回滚web1,到指定包"
+    def do_roll1(self, index):
+        if(self.web1_list is None or self.web2_list is None):
+            print "war lib error: there is not war"
+            return
+        while(index_out_check(index)):
+            index = raw_input("输入回滚包的序号: ")
+        recover_lib(index,1,self.web1_list)
+
+    def help_roll2(self):
+        print "回滚web2,到指定包"
+    def do_roll2(self, index):
+        if(self.web1_list is None or self.web2_list is None):
+            print "war lib error: there is not war"
+            return
+        while(index_out_check(index)):
+            index = raw_input("输入回滚包的序号: ")
+        recover_lib(index,2,self.web2_list)
+
+    def help_rolltst(self):
+        print "回滚测试服,到指定包"
+    def do_rolltst(self, index):
+        while(index_out_check(index)):
+            index = raw_input("输入回滚包的序号: ")
+        recover_tst_lib(index,2,self.tst_list)
+
+    def help_rollA(self):
+        print "回滚第web1,web2到指定包"
+    def do_rollA(self, index):
+        if(self.web1_list is None or self.web2_list is None):
+            print "war lib error: there is not war"
+            return
+        while(index_out_check(index)):
+            index = raw_input("输入回滚包的序号: ")
+        web_id = 1
+        a=threading.Thread(target=recover_lib,args=(index,web_id,self.web1_list))
+        a.start() 
+        web_id = 2
+        b=threading.Thread(target=recover_lib,args=(index,web_id,self.web2_list))
+        b.start() 
+
+if __name__ == '__main__':
+    rollBack = RollBack()
+    rollBack.cmdloop()
