@@ -18,7 +18,7 @@ WEB_PATH=${PROJECT_PATH}"/web"
 # deploy
 dp_local="/usr/local/bin/dp_local.sh"
 DEPLOY_PROJECT_PATH=${PROJECT_PATH}
-DEPLOY_PROJECT_WAR_PATH="/home/ubuntu/Works/es/web/target/es-web.war"
+DEPLOY_PROJECT_WAR_PATH="/home/ubuntu/Works/OPEN_SOURCE/es/web/target/es-web.war"
 WAR_NAME="es"
 MVN_PACKAGE_PROFILE="development"
 ${dp_local} $DEPLOY_PROJECT_PATH $DEPLOY_PROJECT_WAR_PATH $WAR_NAME $MVN_PACKAGE_PROFILE
