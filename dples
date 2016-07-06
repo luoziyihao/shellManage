@@ -6,7 +6,7 @@
 #########################################################################
 #!/bin/bash
 
-PROJECT_PATH="/home/ubuntu/Works/es"
+PROJECT_PATH="/home/ubuntu/Works/OPEN_SOURCE/es"
 WEB_PATH=${PROJECT_PATH}"/web"
 
 # init data
