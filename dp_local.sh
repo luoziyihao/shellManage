@@ -91,7 +91,7 @@ echo  "start to deploy "
 # deploy
 #echo "start pull..."
 cd ${DEPLOY_PROJECT_PATH}
-#git pull
+git pull
 echo "package start..."
 mvn_build
 echo "start..."
