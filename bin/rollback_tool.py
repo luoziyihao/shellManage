@@ -94,7 +94,7 @@ def ssh2(ip,username,passwd,cmd):
         for m in cmd:
             stdin, stdout, stderr = ssh.exec_command(m)
 #           stdin.write("Y")   #简单交互，输入 ‘Y’ 
-            #在回滚脚本中，只存在一次执行任务,故第一次会直接返回
+            #在回滚脚本中，只存在一次执行任务,故第一次后会直接返回
             res = replace_line(stdout.readlines())
         print '%s\tOK\n'%(ip)
         ssh.close()
