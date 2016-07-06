@@ -53,3 +53,6 @@ do
    backuplog_process
    sleep ${SLEEPTIME} 
 done
+
+
+# tail -n 1000000 ctrade_statistics.log|awk -F "[ \t][ \t]*" '{if(($1 >= "2016-04-19" && $1 <= "2016-04-19") && ($2 >= "10:00:00,000" && $2 <= "10:30:00,000")) {print $0}}'|less
