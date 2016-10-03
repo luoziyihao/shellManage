@@ -1,0 +1,30 @@
+{
+  "table" : [
+  {
+      "name":"count_usermanage",
+      "field":[
+          {"name":"reg","value":"注册","order":"001"},
+          {"name":"appLogin","value":"登录","order":"002"},
+          {"name":"appRelated","value":"关联微信","order":"012"},
+          {"name":"openAndSign_open","value":"开户","order":"003"},
+          {"name":"openAndSign_sign","value":"改签","order":"013"},
+          {"name":"openWithhold","value":"开通快捷支付","order":"014"}
+      ]
+  },
+
+  {
+      "name":"count_trade",
+      "field":[
+          {"name":"transferMoney_in","value":"入金(本接口暂未启用，暂时使用合利宝快捷支付入金)","used":"no","order":"100"},
+          {"name":"transferMoney_out","value":"出金","order":"005"},
+          {"name":"openMarketPricePosition","value":"市价建仓委托","order":"006"},
+          {"name":"closeMarketPricePosition","value":"市价平仓委托","order":"008"},
+          {"name":"setLimitePriceClosePosition","value":"持仓单设置止盈止损","order":"009"},
+          {"name":"cancelLimitPriceClosePosition","value":"撤销持仓单止盈止损","order":"010"},
+          {"name":"openLimitPricePosition","value":"指价建仓委托","order":"007"},
+          {"name":"cancelLimitPriceOpenPosition","value":"指价平仓委托取消","order":"011"},
+          {"name":"moneyQuickWithhold","value":"合利宝快捷支付入金","order":"004"}
+      ]
+  }
+  ]
+}
