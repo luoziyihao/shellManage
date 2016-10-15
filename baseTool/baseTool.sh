@@ -57,3 +57,5 @@ vim替换
 0,$s/&[123456789+-, ]*//g
 vim --remote-tab-silent ./difflist.txt
 
+# 根据文件列表删除文件
+sed -e 's/[ \t]*$//g' -e 's/^[ \t]*//g' < ./tmp |xargs -i rm -rf {}
