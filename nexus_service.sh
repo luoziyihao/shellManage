@@ -27,7 +27,7 @@ if [ ! -d "${nexus_work_home}" ]
 then
     sudo mkdir -p ${nexus_work_home}
     sudo cp -rf ${sonatypework} ${sonatypework}".bak"
-    sudo cp -rf ${sonatypework}"/*" ${nexus_work_home}
+    sudo cp -rf ${sonatypework}/* ${nexus_work_home}
     sudo rm -rf ${sonatypework}
     sudo ln -fs ${nexus_work_home} ${sonatypework}
     sudo chown -R ${user} ${nexus_work_home}
