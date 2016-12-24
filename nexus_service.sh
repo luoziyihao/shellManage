@@ -1,14 +1,6 @@
 #!/bin/bash
-#########################################################################
-# File Name: nexus_start.sh
-# Author: raoxiang
-# mail: xiangrao@qilin99.com
-# Created Time: 2016-12-24
-#########################################################################
 
-# export JAVA_HOME="/usr/local/share/jvm/jdk1.8.0_101"
-# export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-# export PATH=$JAVA_HOME/bin:$PATH
+# nexus 必须使用 jdk1.8
 
 user=nexus
 group=nexus
