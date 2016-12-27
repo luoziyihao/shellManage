@@ -1,1 +1,1 @@
-scp -r /home/luoziyihao/Works/WYHL/cdeploy root@cms.qilin99.com:/data
+scp -r /home/luoziyihao/Works/WYHL/cdeploy root@cms.qilin99.com:/data/deploy/bin
