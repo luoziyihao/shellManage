@@ -36,6 +36,11 @@ export JAVA_OPTS="-Dfile.encoding=UTF-8 \
 export PATH=$JAVA_HOME/bin:$PATH
  
 #APP_HOME is the location of the bin files of app  
+# condition
+# 1 APP_HOME
+# 2 JAR
+# 3 RUN_USER
+# 4 shutdown.sh
 export APP_HOME=/usr/share/app  
 export JAR=
  
