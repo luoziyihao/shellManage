@@ -1,2 +1,6 @@
 #!/bin/bash
-/data/deloy/bin/deploy.sh ${1} /var/lib/jenkins/workspace/AYTools 
+# AYTools v0.1
+usage=${1}
+workspace=/var/lib/jenkins/workspace/AYTools
+module=""
+sudo -S /data/deploy/bin/deploy.sh ${usage} ${workspace} ${module} "F3LCWF6J^V*$5wtR"
