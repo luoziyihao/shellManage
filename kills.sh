@@ -9,4 +9,4 @@
 # "" 表示 str  '' 会强制转义
 PROCESS_NAME="${1}"
 echo ${PROCESS_NAME}
-ps -elf |grep -i ${PROCESS_NAME}|awk '{print($4)}'|xargs -i sudo kill -9 {}
+ps -elf |grep -v 'ps' | grep -i ${PROCESS_NAME}|awk '{print($4)}'|xargs -i sudo kill -9 {}
