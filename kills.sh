@@ -10,14 +10,14 @@ PROCESS_NAME="${1}"
 echo "start kill ${PROCESS_NAME}"
 
 # get ps_info
-ps_info=`sudo ps -elf |grep -v "ks" |grep -v "kills.sh"| grep -i ${PROCESS_NAME}|grep -v "grep"`
+ps_info=`ps -elf |grep -v "ks" |grep -v "kills.sh"| grep -i ${PROCESS_NAME}|grep -v "grep"`
 echo "ps_info=${ps_info}"
 
 # kill
-echo ${ps_info} | awk '{print($4)}'|xargs -i sudo kill -9 {}
+echo ${ps_info} | awk '{print($4)}'|xargs -i kill -9 {}
 
 # get ps_info
-ps_info=`sudo ps -elf |grep -v "ks" |grep -v "kills.sh"| grep -i ${PROCESS_NAME}|grep -v "grep"`
+ps_info=`ps -elf |grep -v "ks" |grep -v "kills.sh"| grep -i ${PROCESS_NAME}|grep -v "grep"`
 echo "new ps_info=${ps_info}"
 
 echo "kill done "
