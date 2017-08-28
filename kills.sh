@@ -9,15 +9,28 @@
 PROCESS_NAME="${1}"
 echo "start kill ${PROCESS_NAME}"
 
-# get ps_info
-ps_info=`ps -elf |grep -v "ks" |grep -v "kills.sh"| grep -i ${PROCESS_NAME}|grep -v "grep"`
-echo "ps_info=${ps_info}"
+find_ps_info(){
+    # get ps_info
+    ps_info=`ps -elf |grep -v "ks" |grep -v "kills.sh"| grep -i ${PROCESS_NAME}|grep -v "grep"`
+    echo "ps_info=${ps_info}"
+}
 
-# kill
-echo ${ps_info} | awk '{print($4)}'|xargs -i kill -9 {}
+ks(){
+    # kill
+    echo ${ps_info} | awk '{print($4)}'|xargs -i kill -9 {}
+}
 
-# get ps_info
-ps_info=`ps -elf |grep -v "ks" |grep -v "kills.sh"| grep -i ${PROCESS_NAME}|grep -v "grep"`
-echo "new ps_info=${ps_info}"
+for i in $( seq 1 20 )
+do
+    find_ps_info
+    if [ "${ps_info}x" != "x" ]
+    then
+        ks
+        echo -e "kill ${i} times\n"
+        sleep 1
+    else
+        break
+    fi
+done
 
 echo "kill done "
