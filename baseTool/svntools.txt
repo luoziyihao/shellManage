@@ -1,0 +1,57 @@
+svn status > .\diff.txt
+# 获取当前编辑状态 将当前版本和上一版本做比较
+
+svn diff -r1 >.\diff.txt
+svn diff -r1 >./diff.txt
+svn diff -r64 >.\diff.txt
+svn diff -r64 >./diff.txt
+# 获取当前编辑状态 将当前版本和特定版本做比较
+现金管理 BP  
+1初始
+112 没有改池中
+113 改了池中
+公共人物系统 64
+
+ gvim --remote-tab-silent .\diff.txt
+ gvim --remote-tab-silent .\difflist.txt
+ gvim --remote-tab-silent ./difflist.txt
+#gvim打开
+
+w ++enc=gbk
+#保存为 gbk 不然在 windows下的脚本无法识别
+cd /cygdrive/d/raoxiangMM/SVN_SOURCE/devcodemk
+cd /cygdrive/d/raoxiangMM/Works/GCMS_DEV2_NOW/BPCashPool
+ cd /cygdrive/d/raoxiangMM/Works/GGRWXT_DEV1/EBankTask/
+ awk -F" " '$1 ~ /Index:/ {print $2}' diff.txt >difflist.txt
+#生成变更文件清单
+
+#批量拖入firefly变更集
+http://blog.csdn.net/xabc3000/article/details/6731366
+
+svn处理
+对于覆盖文件处理解决方案
+1，取出新增的未提交的 文件 
+2， 将文件回退到未覆盖版本 22
+3，将回退的22 版文件备份一下
+4，再次更新文件 然后用备份的文件替换掉 最新版本
+5，然后把 1中的新增文件添加进来
+6 ，然后提交，就不会出什么问题了
+
+关于下次提交
+先提交
+1，选择的提交文件必须是 自己确定的有效更改 像本地覆盖文件所在的路径下的文件就不能选
+2，如果有冲突，在提交的的时候解决冲突 然后再提交
+
+再更新
+1、更新时必须明确排除掉本地配置文件所在的路径 不要覆盖
+2、可以一个个的选更新目录 务必避免冲突
+
+例外
+研究一下 
+update的冲突
+和commit的冲突及解决方案
+
+1,
+file:///C:/SVN_REPOSITORY
+svn://22.5.48.128/D:/raoxiangMM/SVN_REPOSITORY
+svnserve  -d -r  "D:/raoxiangMM/SVN_REPOSITORY"

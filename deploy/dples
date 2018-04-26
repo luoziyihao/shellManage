@@ -1,0 +1,25 @@
+#########################################################################
+# File Name: dples.sh
+# Author: raoxiang
+# mail: xiangrao@qilin99.com
+# Created Time: 2016-07-06
+#########################################################################
+#!/bin/bash
+HOME=${HOME}
+PROJECT_PATH=${HOME}"/Works/OPEN_SOURCE/es"
+WEB_PATH=${PROJECT_PATH}"/web"
+
+# init data
+#  cd ${WEB_PATH}
+#  mvn db:drop
+#  mvn db:create
+#  mvn db:schema
+#  mvn db:data
+
+# deploy
+dp_local="/usr/local/bin/dp_local.sh"
+DEPLOY_PROJECT_PATH=${PROJECT_PATH}
+DEPLOY_PROJECT_WAR_PATH=${HOME}"/Works/OPEN_SOURCE/es/web/target/es-web.war"
+WAR_NAME="es"
+MVN_PACKAGE_PROFILE="development"
+${dp_local} $DEPLOY_PROJECT_PATH $DEPLOY_PROJECT_WAR_PATH $WAR_NAME $MVN_PACKAGE_PROFILE

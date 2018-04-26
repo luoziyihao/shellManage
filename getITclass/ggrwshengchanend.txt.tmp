@@ -1,0 +1,9 @@
+classes/com/citic/bpserver/bean/corp/PlPoolTrnInfoBean.class
+classes/com/citic/bpserver/constant/task/CashConstant.class
+classes/com/citic/bpserver/dao/task/corp/impl/PoolMonthDetailDao.class
+classes/com/citic/bpserver/task/corp/impl/PoolMonthDetailCmp.class
+classes/com/citic/bpserver/task/corp/PoolMonthDetailTask.class
+classes/com/citic/common/BpUtil.class
+classes/com/citic/common/RecordUtil.class
+config/SYSDATA/Task.xml
+config/SYSDATA/TASKS/PoolMonthDetailTask.xml

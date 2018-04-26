@@ -1,0 +1,40 @@
+ #!/bin/bash
+
+
+export JAVA_HOME="/usr/local/share/jvm/jdk1.8/jdk1.8.0_73"
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$PATH
+
+# PROJECT_PATH=${1}
+PROJECT_PATH="/var/lib/jenkins/workspace/AYTools"
+WEB_MODULE=""
+APP_NAME="AYTools"
+
+if [ "${WEB_MODULE}"x != ""x ]
+then
+    JAR=${PROJECT_PATH}"/"${WEB_MODULE}"/target/"${APP_NAME}".jar"
+else
+    JAR=${PROJECT_PATH}"/target/"${APP_NAME}".jar"
+fi
+
+echo ${JAR}"\t is to be deployed"
+ps -elf |grep ${JAR} |awk '{print($4)}' |xargs -i kill -9 {}
+sleep 2
+
+APP_LOG_DIR="/var/log/jenkins/"${APP_NAME}
+mkdir -p ${APP_LOG_DIR}
+APP_LOG=${APP_LOG_DIR}"/nohup.out"
+
+echo "log="${APP_LOG}
+if [ $(id -un)x != "jenkins"x ]
+then
+    echo "execute user is not jenkins"
+    sudo -u jenkins nohup java -Djava.security.egd=file:/dev/./urandom -jar ${JAR} >> ${APP_LOG} 2>&1 &
+else
+    nohup java -Djava.security.egd=file:/dev/./urandom -jar ${JAR} >> ${APP_LOG} 2>&1 &
+fi
+sleep 3
+echo "done"
+# exit to avoid the nohup session closed by jenkins
+exit 0
+# tail -f ${APP_LOG}

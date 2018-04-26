@@ -1,0 +1,19 @@
+#########################################################################
+# File Name: dpl_ctrade.sh
+# Author: raoxiang
+# mail: xiangrao@qilin99.com
+# Created Time: 2016-07-06
+#########################################################################
+#!/bin/bash
+
+DEPLOY_PROJECT_PATH="/home/luoziyihao/Works/WYHL/ctrade2"
+DEPLOY_PROJECT_WAR_PATH="/home/luoziyihao/Works/WYHL/ctrade2/ctrade/target/ctrade-1.0-dev.war"
+WAR_NAME="ctrade"
+MVN_PACKAGE_PROFILE="dev"
+
+# DEPLOY_PROJECT_PATH=$1
+# DEPLOY_PROJECT_WAR_PATH=$2
+# WAR_NAME=$3
+# MVN_PACKAGE_PROFILE=$4
+
+./dp_local.sh $DEPLOY_PROJECT_PATH $DEPLOY_PROJECT_WAR_PATH $WAR_NAME $MVN_PACKAGE_PROFILE
