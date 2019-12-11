@@ -17,7 +17,7 @@ find_ps_info(){
 
 ks(){
     # kill
-    echo ${ps_info} | awk '{print($4)}'|xargs -i kill -9 {}
+    echo ${ps_info} | awk '{print($2)}'|xargs -i kill -9 {}
 }
 
 for i in $( seq 1 20 )
